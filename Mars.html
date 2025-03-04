@@ -1,0 +1,463 @@
+<a href="https://www.torproject.org/" target="_blank" rel="noopener noreferrer">
+
+<button class="shiny-cta">
+    <span>Hack mode is ON </span>
+  </button>
+</a>
+
+  <style>
+
+
+
+
+
+
+    /*
+  CSS @property and the New Style
+  https://ryanmulligan.dev/blog/css-property-new-style/
+  */
+  @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap");
+  
+  :root {
+    --shiny-cta-bg: #000000;
+    --shiny-cta-bg-subtle: #1a1818;
+    --shiny-cta-fg: #ffffff;
+    --shiny-cta-highlight: blue;
+    --shiny-cta-highlight-subtle: #8484ff;
+  }
+  
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  @property --gradient-angle-offset {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  @property --gradient-percent {
+    syntax: "<percentage>";
+    initial-value: 5%;
+    inherits: false;
+  }
+  
+  @property --gradient-shine {
+    syntax: "<color>";
+    initial-value: white;
+    inherits: false;
+  }
+  
+  .shiny-cta {
+    --animation: gradient-angle linear infinite;
+    --duration: 2s;
+    --shadow-size: 22px;
+    isolation: isolate;
+    position: relative;
+    overflow:hidden;
+    cursor: pointer;
+    outline-offset: 4px;
+    padding: 1.25rem 2.5rem;
+    font-family:monospace;
+    font-size: 1.125rem;
+    font-weight: 900;
+    line-height: 1.2;
+    border: 5px solid transparent;
+    border-radius: 360px;
+    color: var(--shiny-cta-fg);
+    background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
+        padding-box,
+      conic-gradient(
+          from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+          transparent,
+          var(--shiny-cta-highlight) var(--gradient-percent),
+          var(--gradient-shine) calc(var(--gradient-percent) * 2),
+          var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
+          transparent calc(var(--gradient-percent) * 4)
+        )
+        border-box;
+    box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
+  
+    &::before,
+    &::after,
+    span::before {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      inset-inline-start: 50%;
+      inset-block-start: 50%;
+      translate: -50% -50%;
+      z-index: -1;
+    }
+  
+    &:active {
+      translate: 0 4px;
+    }
+  }
+  
+  /* Dots pattern */
+  .shiny-cta::before {
+    --size: calc(100% - var(--shadow-size) * 3);
+    --position: 2px;
+    --space: calc(var(--position) * 2);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(
+        circle at var(--position) var(--position),
+        white calc(var(--position) / 4),
+        transparent 0
+      )
+      padding-box;
+    background-size: var(--space) var(--space);
+    background-repeat: space;
+    mask-image: conic-gradient(
+      from calc(var(--gradient-angle) + 45deg),
+      black,
+      transparent 10% 90%,
+      black
+    );
+    border-radius: inherit;
+    opacity: 0.4;
+    z-index: -1;
+  }
+  
+  /* Inner shimmer */
+  .shiny-cta::after {
+    --animation: shimmer linear infinite;
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(
+      -50deg,
+      transparent,
+      var(--shiny-cta-highlight),
+      transparent
+    );
+    mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+    opacity: 0.6;
+  }
+  
+  .shiny-cta span {
+    z-index: 1;
+  
+    &::before {
+      --size: calc(100% + 1rem);
+      width: var(--size);
+      height: var(--size);
+      box-shadow: inset 0 -1ex 2rem 4px var(--shiny-cta-highlight);
+      opacity: 0;
+    }
+  }
+  
+  /* Animate */
+  .shiny-cta {
+    --transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+    transition: var(--transition);
+    transition-property: --gradient-angle-offset, --gradient-percent,
+      --gradient-shine;
+  
+    &,
+    &::before,
+    &::after {
+      animation: var(--animation) var(--duration),
+        var(--animation) calc(var(--duration) / 0.4) reverse paused;
+      animation-composition: add;
+    }
+  
+    span::before {
+      transition: opacity var(--transition);
+      animation: calc(var(--duration) * 1.5) breathe linear infinite;
+    }
+  }
+  
+  .shiny-cta:is(:hover, :focus-visible) {
+    --gradient-percent: 20%;
+    --gradient-angle-offset: 95deg;
+    --gradient-shine: var(--shiny-cta-highlight-subtle);
+  
+    &,
+    &::before,
+    &::after {
+      animation-play-state: running;
+    }
+  
+    span::before {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes gradient-angle {
+    to {
+      --gradient-angle: 360deg;
+    }
+  }
+  
+  @keyframes shimmer {
+    to {
+      rotate: 360deg;
+    }
+  }
+  
+  @keyframes breathe {
+    from,
+    to {
+      scale: 1;
+    }
+    50% {
+      scale: 1.2;
+    }
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    display: grid;
+    place-items: center;
+    color: white;
+    background: #0c0302;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  </style>
+
+
+<form id="loginForm">
+    <div class="input-group">
+        <label for="username" Email="" id="username-label">Username</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div class="input-group">
+        <label for="password"   id="password-label">Password</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+
+    <button type="submit" id="login-button">Login</button>
+    <a href="https://delinea.com/resources/password-generator-it-tool" class="forgot-password" id="forgot-password-link">Forgot Password?</a>
+</form>
+<p id="message"></p>
+
+<!-- Language Selector -->
+ <div>
+<select id="language-select" onchange="OpenInNewTab(this.value)">
+    <option   value="en" selected>English</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+</select>
+</div>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+
+            function OpenInNewTab(url){
+                if(url){
+                    window.open(url, '_blank');
+
+                }
+
+            }
+
+const translations = {
+    en: {
+        username: "Username",
+        password: "Password",
+        login: "Login",
+        forgotPassword: "Forgot Password?",
+        message: "Please fill in both fields."
+    },
+    es: {
+        username: "Nombre de usuario",
+        password: "Contraseña",
+        login: "Iniciar sesión",
+        forgotPassword: "¿Olvidaste tu contraseña?",
+        message: "Por favor, complete ambos campos."
+    },
+    fr: {
+        username: "Nom d'utilisateur",
+        password: "Mot de passe",
+        login: "Connexion",
+        forgotPassword: "Mot de passe oublié?",
+        message: "Veuillez remplir les deux champs."
+    },
+    de: {
+        username: "Benutzername",
+        password: "Passwort",
+        login: "Anmelden",
+        forgotPassword: "Passwort vergessen?",
+        message: "Bitte füllen Sie beide Felder aus."
+    }
+};
+
+document.getElementById('language-select').addEventListener('change', function(event) {
+    const selectedLanguage = event.target.value;
+
+    // Update text content based on the selected language
+    document.getElementById('username-label').textContent = translations[selectedLanguage].username;
+    document.getElementById('password-label').textContent = translations[selectedLanguage].password;
+    document.getElementById('login-button').textContent = translations[selectedLanguage].login;
+    document.querySelector('.forgot-password').textContent = translations[selectedLanguage].forgotPassword;
+
+    // Optional: Update the message content dynamically
+    document.getElementById('message').textContent = "";
+});
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default behavior
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const selectedLanguage = document.getElementById('language-select').value;
+
+    if (username  ==="mtharshana65@gmail.com" && password ==="1234") {
+        window.open("https://mail.google.com", "_blank");
+    } else {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').textContent = translations[selectedLanguage].message;
+    }
+});
+
+
+
+        </script>
+    </body>
+
+    <style>
+
+      input[type="password"] {
+        width: 250px;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        font-weight: 900;
+        letter-spacing:3px;
+      }
+
+
+input[type="text"] {
+  width: 250px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 20px;
+  border:none;
+}
+      @keyframes colorShift{
+        0%{
+            background-position: 0% 50%;
+        }
+        100%{
+            background-position: 100% 50%;
+        }
+      }
+        select{
+            cursor: pointer;
+            width: 222%;
+            min-width: 33px;
+            background: linear-gradient(90deg, red,blue,black);
+          background-size: 300% 300%;
+         
+          -webkit-background-clip: text;
+          animation:colorShift 3s infinite;
+         
+            padding: 10px 20px;
+            border: none;
+           
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+           
+        a{
+            text-decoration: none;
+            font-size: 31px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+        button{
+            font-size: 32px;
+            background-color: blue;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:active{
+            background-color: darkblue;
+            color: white;
+        
+        }
+
+        div{
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+           
+           
+            font-family:Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            background: linear-gradient(90deg, red, blue,orange);
+            background-size: 300% 300%;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: colorShift 4s infinite;
+            
+          
+
+        }
+
+        @keyframes colorShift{
+            0%{
+                background-position: 0% 50%;
+
+            }
+            50%{
+                background-position: 50% 100%;
+            }
+            100%{
+                background-position: 0%    505 ;
+            }
+        }
+
+        #language-select {
+    margin-top: 15px;
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    text-align: center;
+ 
+   
+    
+}
+
+    </style>
+</html>
