@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<button class="shiny-cta">
+  <span>Hack mode is ON </span>
+</button>
+
+<style>
+  /*
+CSS @property and the New Style
+https://ryanmulligan.dev/blog/css-property-new-style/
+*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap");
+
+:root {
+  --shiny-cta-bg: #000000;
+  --shiny-cta-bg-subtle: #1a1818;
+  --shiny-cta-fg: #ffffff;
+  --shiny-cta-highlight: blue;
+  --shiny-cta-highlight-subtle: #8484ff;
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+
+@property --gradient-shine {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
+.shiny-cta {
+  --animation: gradient-angle linear infinite;
+  --duration: 2s;
+  --shadow-size: 22px;
+  isolation: isolate;
+  position: relative;
+  overflow:hidden;
+  cursor: pointer;
+  outline-offset: 4px;
+  padding: 1.25rem 2.5rem;
+  font-family:monospace;
+  font-size: 1.125rem;
+  font-weight: 900;
+  line-height: 1.2;
+  border: 5px solid transparent;
+  border-radius: 360px;
+  color: var(--shiny-cta-fg);
+  background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
+      padding-box,
+    conic-gradient(
+        from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+        transparent,
+        var(--shiny-cta-highlight) var(--gradient-percent),
+        var(--gradient-shine) calc(var(--gradient-percent) * 2),
+        var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
+        transparent calc(var(--gradient-percent) * 4)
+      )
+      border-box;
+  box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
+
+  &::before,
+  &::after,
+  span::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+  }
+
+  &:active {
+    translate: 0 4px;
+  }
+}
+
+/* Dots pattern */
+.shiny-cta::before {
+  --size: calc(100% - var(--shadow-size) * 3);
+  --position: 2px;
+  --space: calc(var(--position) * 2);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(
+      circle at var(--position) var(--position),
+      white calc(var(--position) / 4),
+      transparent 0
+    )
+    padding-box;
+  background-size: var(--space) var(--space);
+  background-repeat: space;
+  mask-image: conic-gradient(
+    from calc(var(--gradient-angle) + 45deg),
+    black,
+    transparent 10% 90%,
+    black
+  );
+  border-radius: inherit;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+/* Inner shimmer */
+.shiny-cta::after {
+  --animation: shimmer linear infinite;
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(
+    -50deg,
+    transparent,
+    var(--shiny-cta-highlight),
+    transparent
+  );
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+  opacity: 0.6;
+}
+
+.shiny-cta span {
+  z-index: 1;
+
+  &::before {
+    --size: calc(100% + 1rem);
+    width: var(--size);
+    height: var(--size);
+    box-shadow: inset 0 -1ex 2rem 4px var(--shiny-cta-highlight);
+    opacity: 0;
+  }
+}
+
+/* Animate */
+.shiny-cta {
+  --transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+  transition: var(--transition);
+  transition-property: --gradient-angle-offset, --gradient-percent,
+    --gradient-shine;
+
+  &,
+  &::before,
+  &::after {
+    animation: var(--animation) var(--duration),
+      var(--animation) calc(var(--duration) / 0.4) reverse paused;
+    animation-composition: add;
+  }
+
+  span::before {
+    transition: opacity var(--transition);
+    animation: calc(var(--duration) * 1.5) breathe linear infinite;
+  }
+}
+
+.shiny-cta:is(:hover, :focus-visible) {
+  --gradient-percent: 20%;
+  --gradient-angle-offset: 95deg;
+  --gradient-shine: var(--shiny-cta-highlight-subtle);
+
+  &,
+  &::before,
+  &::after {
+    animation-play-state: running;
+  }
+
+  span::before {
+    opacity: 1;
+  }
+}
+
+@keyframes gradient-angle {
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes breathe {
+  from,
+  to {
+    scale: 1;
+  }
+  50% {
+    scale: 1.2;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  color: white;
+  background: #0c0302;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Dropdown</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <span>
+  <header>
+    Social Networks across the Global
+  </header>
+</span>
+  <div class="custom-select">
+    <select id="socialMediaDropdown" onchange="openInNewTab(this.value)">
+        <option value="">Social media</option>
+      <option ></option>
+     </option>
+      <option value="https://www.twitter.com/" data-icon="twitter.png">Twitter</option>
+      <option value="https://www.instagram.com/zuck/" data-icon="instagram.png">Instagram</option>
+      <option value="https://www.reddit.com/" data-icon="">reddit</option>
+      <option value="https://www.9gag.com/" data-icon="">9GAG</option>
+      <option value="https://www.discord.com/">Discord</option>
+    </select>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+<style>
+
+  body{
+    border-radius: 21px;
+
+  
+  }
+  span{
+    background-color:black;
+  }
+  header{
+    text-align:center;
+    font-size: 11vh;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+    margin-bottom: 21vh;
+    background: linear-gradient(90deg,red,blue,orange,green);
+    background-size: 300% 300%;
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: colorShift 4s infinite;
+
+
+  }
+  @keyframes colorShift{
+    0%{
+      background-position: 0% 50%;
+    }
+    100%{
+      background-position: 100% 50%;
+    }
+  }
+
+    body {
+  font-family: Arial, sans-serif;
+}
+option{
+    text-align: center;
+    font-weight: 900;
+}
+
+.custom-select {
+  position: relative;
+  width: 200px;
+}
+
+
+select {
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+  padding: 21px;
+  margin: 0;
+  align-items: center;
+  margin-left: 22vh;
+    cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(152, 152, 165);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  border: none;
+  box-sizing: content-box;
+  box-shadow: 0 4px 6px rgba(74, 72, 72, 0.1);
+}
+@keyframes colorShift{
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.custom-option {
+  display: flex;
+  align-items: center;
+}
+
+.custom-option img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+</style>
+<script>
+
+    function openInNewTab(url) {
+        if(url){
+            window.open(url, '_blank');
+        }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+  const dropdown = document.getElementById("socialMediaDropdown");
+
+  // Dynamically populate options with icons
+  Array.from(dropdown.options).forEach(option => {
+    const iconSrc = option.getAttribute("data-icon");
+    const text = option.textContent;
+
+    if (iconSrc) {
+      const span = document.createElement("span");
+      span.classList.add("custom-option");
+
+      const img = document.createElement("img");
+      img.src = iconSrc;
+      img.alt = text;
+
+      const textNode = document.createTextNode(text);
+
+      span.appendChild(img);
+      span.appendChild(textNode);
+      option.textContent = "";
+      option.appendChild(span);
+    }
+  });
+});
+
+</script>

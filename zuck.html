@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<a  style="text-decoration: none;" href="http://www.torproject.org/" target="_blank" rel="noopener noreferrer">
+<button class="shiny-cta">
+    <span>Hack mode is ON </span>
+  </button>
+  
+</a>
+  <style>
+    /*
+  CSS @property and the New Style
+  https://ryanmulligan.dev/blog/css-property-new-style/
+  */
+  @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap");
+  
+  :root {
+    --shiny-cta-bg: #000000;
+    --shiny-cta-bg-subtle: #1a1818;
+    --shiny-cta-fg: #ffffff;
+    --shiny-cta-highlight: rgb(237, 7, 7);
+    --shiny-cta-highlight-subtle: #1b1bd7;
+  }
+  
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  @property --gradient-angle-offset {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  @property --gradient-percent {
+    syntax: "<percentage>";
+    initial-value: 5%;
+    inherits: false;
+  }
+  
+  @property --gradient-shine {
+    syntax: "<color>";
+    initial-value: white;
+    inherits: false;
+  }
+  
+  .shiny-cta {
+    --animation: gradient-angle linear infinite;
+    --duration: 2s;
+    --shadow-size: 22px;
+    isolation: isolate;
+    position: relative;
+    overflow:hidden;
+    cursor: pointer;
+    outline-offset: 4px;
+    padding: 1.25rem 2.5rem;
+    font-family:monospace;
+    font-size: 1.125rem;
+    font-weight: 900;
+    line-height: 1.2;
+    border: 5px solid transparent;
+    border-radius: 360px;
+    color: var(--shiny-cta-fg);
+    background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
+        padding-box,
+      conic-gradient(
+          from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+          transparent,
+          var(--shiny-cta-highlight) var(--gradient-percent),
+          var(--gradient-shine) calc(var(--gradient-percent) * 2),
+          var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
+          transparent calc(var(--gradient-percent) * 4)
+        )
+        border-box;
+    box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
+  
+    &::before,
+    &::after,
+    span::before {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      inset-inline-start: 50%;
+      inset-block-start: 50%;
+      translate: -50% -50%;
+      z-index: -1;
+    }
+  
+    &:active {
+      translate: 0 4px;
+    }
+  }
+  
+  /* Dots pattern */
+  .shiny-cta::before {
+    --size: calc(100% - var(--shadow-size) * 3);
+    --position: 2px;
+    --space: calc(var(--position) * 2);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(
+        circle at var(--position) var(--position),
+        white calc(var(--position) / 4),
+        transparent 0
+      )
+      padding-box;
+    background-size: var(--space) var(--space);
+    background-repeat: space;
+    mask-image: conic-gradient(
+      from calc(var(--gradient-angle) + 45deg),
+      black,
+      transparent 10% 90%,
+      black
+    );
+    border-radius: inherit;
+    opacity: 0.4;
+    z-index: -1;
+  }
+  
+  /* Inner shimmer */
+  .shiny-cta::after {
+    --animation: shimmer linear infinite;
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(
+      -50deg,
+      transparent,
+      var(--shiny-cta-highlight),
+      transparent
+    );
+    mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+    opacity: 0.6;
+  }
+  
+  .shiny-cta span {
+    z-index: 1;
+  
+    &::before {
+      --size: calc(100% + 1rem);
+      width: var(--size);
+      height: var(--size);
+      box-shadow: inset 0 -1ex 2rem 4px var(--shiny-cta-highlight);
+      opacity: 0;
+    }
+  }
+  
+  /* Animate */
+  .shiny-cta {
+    --transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+    transition: var(--transition);
+    transition-property: --gradient-angle-offset, --gradient-percent,
+      --gradient-shine;
+  
+    &,
+    &::before,
+    &::after {
+      animation: var(--animation) var(--duration),
+        var(--animation) calc(var(--duration) / 0.4) reverse paused;
+      animation-composition: add;
+    }
+  
+    span::before {
+      transition: opacity var(--transition);
+      animation: calc(var(--duration) * 1.5) breathe linear infinite;
+    }
+  }
+  
+  .shiny-cta:is(:hover, :focus-visible) {
+    --gradient-percent: 20%;
+    --gradient-angle-offset: 95deg;
+    --gradient-shine: var(--shiny-cta-highlight-subtle);
+  
+    &,
+    &::before,
+    &::after {
+      animation-play-state: running;
+    }
+  
+    span::before {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes gradient-angle {
+    to {
+      --gradient-angle: 360deg;
+    }
+  }
+  
+  @keyframes shimmer {
+    to {
+      rotate: 360deg;
+    }
+  }
+  
+  @keyframes breathe {
+    from,
+    to {
+      scale: 1;
+    }
+    50% {
+      scale: 1.2;
+    }
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    display: grid;
+    place-items: center;
+    color: white;
+    background: #0c0302;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  </style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+      <style>
+     
+        button{
+            padding: 10px 20px;
+          border: none;
+          margin: 10px;background-color: aqua;
+          color: red;
+          border-radius: 10px;
+        }
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        .dropdown-content {
+          display: none;
+          min-width: 160px;
+          font-size: 22px;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+        }
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+         
+        }
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        .dropdown-content a:hover {
+          background-color: #f1f1f1;
+        }
+      </style>
+      <title>Custom Dropdown</title>
+    </head>
+    <body>
+        <span onchange="navigateToWebsite()">
+      <div class="dropdown">
+        <button>Dropdown <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+          <a  style="  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: 900;" href=" https://www.spotify.com" target="_blank" >
+            <i class="fa-brands fa-spotify" style=" font-weight: 900; color:   green;" ></i>
+
+            </i> spotify </a>
+          <a  style=" font-family: fantasy; font-weight: 900;" href="https://www.apple.com/apple-music/"target="_blank" ><i class="fab fa-apple"style="color: red;" >
+
+            
+          </i> 
+        apple music
+        </a>
+          
+     
+        <a href="https://music.youtube.com/">
+<?xml version="1.0" ?><svg style= "enable-background:new 0 0 100 100;  " version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="12%" ><style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#F5BB41;}
+	.st2{fill:#2167D1;}
+	.st3{fill:#3D84F3;}
+	.st4{fill:#4CA853;}
+	.st5{fill:#398039;}
+	.st6{fill:#D74F3F;}
+	.st7{fill:#D43C89;}
+	.st8{fill:#B2005F;}
+	.st9{fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st10{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st11{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#040404;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;}
+	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#040404;}
+	.st14{fill:url(#SVGID_1_);}
+	.st15{fill:url(#SVGID_2_);}
+	.st16{fill:url(#SVGID_3_);}
+	.st17{fill:url(#SVGID_4_);}
+	.st18{fill:url(#SVGID_5_);}
+	.st19{fill:url(#SVGID_6_);}
+	.st20{fill:url(#SVGID_7_);}
+	.st21{fill:url(#SVGID_8_);}
+	.st22{fill:url(#SVGID_9_);}
+	.st23{fill:url(#SVGID_10_);}
+	.st24{fill:url(#SVGID_11_);}
+	.st25{fill:url(#SVGID_12_);}
+	.st26{fill:url(#SVGID_13_);}
+	.st27{fill:url(#SVGID_14_);}
+	.st28{fill:url(#SVGID_15_);}
+	.st29{fill:url(#SVGID_16_);}
+	.st30{fill:url(#SVGID_17_);}
+	.st31{fill:url(#SVGID_18_);}
+	.st32{fill:url(#SVGID_19_);}
+	.st33{fill:url(#SVGID_20_);}
+	.st34{fill:url(#SVGID_21_);}
+	.st35{fill:url(#SVGID_22_);}
+	.st36{fill:url(#SVGID_23_);}
+	.st37{fill:url(#SVGID_24_);}
+	.st38{fill:url(#SVGID_25_);}
+	.st39{fill:url(#SVGID_26_);}
+	.st40{fill:url(#SVGID_27_);}
+	.st41{fill:url(#SVGID_28_);}
+	.st42{fill:url(#SVGID_29_);}
+	.st43{fill:url(#SVGID_30_);}
+	.st44{fill:url(#SVGID_31_);}
+	.st45{fill:url(#SVGID_32_);}
+	.st46{fill:url(#SVGID_33_);}
+	.st47{fill:url(#SVGID_34_);}
+	.st48{fill:url(#SVGID_35_);}
+	.st49{fill:url(#SVGID_36_);}
+	.st50{fill:url(#SVGID_37_);}
+	.st51{fill:url(#SVGID_38_);}
+	.st52{fill:url(#SVGID_39_);}
+	.st53{fill:url(#SVGID_40_);}
+	.st54{fill:url(#SVGID_41_);}
+	.st55{fill:url(#SVGID_42_);}
+	.st56{fill:url(#SVGID_43_);}
+	.st57{fill:url(#SVGID_44_);}
+	.st58{fill:url(#SVGID_45_);}
+	.st59{fill:#040404;}
+	.st60{fill:url(#SVGID_46_);}
+	.st61{fill:url(#SVGID_47_);}
+	.st62{fill:url(#SVGID_48_);}
+	.st63{fill:url(#SVGID_49_);}
+	.st64{fill:url(#SVGID_50_);}
+	.st65{fill:url(#SVGID_51_);}
+	.st66{fill:url(#SVGID_52_);}
+	.st67{fill:url(#SVGID_53_);}
+	.st68{fill:url(#SVGID_54_);}
+	.st69{fill:url(#SVGID_55_);}
+	.st70{fill:url(#SVGID_56_);}
+	.st71{fill:url(#SVGID_57_);}
+	.st72{fill:url(#SVGID_58_);}
+	.st73{fill:url(#SVGID_59_);}
+	.st74{fill:url(#SVGID_60_);}
+	.st75{fill:url(#SVGID_61_);}
+	.st76{fill:url(#SVGID_62_);}
+	.st77{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st78{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st79{fill:#4BC9FF;}
+	.st80{fill:#5500DD;}
+	.st81{fill:#FF3A00;}
+	.st82{fill:#E6162D;}
+	.st83{fill:#F1F1F1;}
+	.st84{fill:#FF9933;}
+	.st85{fill:#B92B27;}
+	.st86{fill:#00ACED;}
+	.st87{fill:#BD2125;}
+	.st88{fill:#1877F2;}
+	.st89{fill:#6665D2;}
+	.st90{fill:#CE3056;}
+	.st91{fill:#5BB381;}
+	.st92{fill:#61C3EC;}
+	.st93{fill:#E4B34B;}
+	.st94{fill:#181EF2;}
+	.st95{fill:#FF0000;}
+	.st96{fill:#FE466C;}
+	.st97{fill:#FA4778;}
+	.st98{fill:#FF7700;}
+	.st99{fill-rule:evenodd;clip-rule:evenodd;fill:#1F6BF6;}
+	.st100{fill:#520094;}
+	.st101{fill:#4477E8;}
+	.st102{fill:#3D1D1C;}
+	.st103{fill:#FFE812;}
+	.st104{fill:#344356;}
+	.st105{fill:#00CC76;}
+	.st106{fill-rule:evenodd;clip-rule:evenodd;fill:#345E90;}
+	.st107{fill:#1F65D8;}
+	.st108{fill:#EB3587;}
+	.st109{fill-rule:evenodd;clip-rule:evenodd;fill:#603A88;}
+	.st110{fill:#E3CE99;}
+	.st111{fill:#783AF9;}
+	.st112{fill:#FF515E;}
+	.st113{fill:#FF4906;}
+	.st114{fill:#503227;}
+	.st115{fill:#4C7BD9;}
+	.st116{fill:#69C9D0;}
+	.st117{fill:#1B92D1;}
+	.st118{fill:#EB4F4A;}
+	.st119{fill:#513728;}
+	.st120{fill:#FF6600;}
+	.st121{fill-rule:evenodd;clip-rule:evenodd;fill:#B61438;}
+	.st122{fill:#FFFC00;}
+	.st123{fill:#141414;}
+	.st124{fill:#94D137;}
+	.st125{fill-rule:evenodd;clip-rule:evenodd;fill:#F1F1F1;}
+	.st126{fill-rule:evenodd;clip-rule:evenodd;fill:#66E066;}
+	.st127{fill:#2D8CFF;}
+	.st128{fill:#F1A300;}
+	.st129{fill:#4BA2F2;}
+	.st130{fill:#1A5099;}
+	.st131{fill:#EE6060;}
+	.st132{fill-rule:evenodd;clip-rule:evenodd;fill:#F48120;}
+	.st133{fill:#222222;}
+	.st134{fill:url(#SVGID_63_);}
+	.st135{fill:#0077B5;}
+	.st136{fill:#FFCC00;}
+	.st137{fill:#EB3352;}
+	.st138{fill:#F9D265;}
+	.st139{fill:#F5B955;}
+	.st140{fill:#DD2A7B;}
+	.st141{fill:#66E066;}
+	.st142{fill:#EB4E00;}
+	.st143{fill:#FFC794;}
+	.st144{fill:#B5332A;}
+	.st145{fill:#4E85EB;}
+	.st146{fill:#58A45C;}
+	.st147{fill:#F2BC42;}
+	.st148{fill:#D85040;}
+	.st149{fill:#464EB8;}
+	.st150{fill:#7B83EB;}
+</style  ><g id="Layer_1"/><g id="Layer_2"><g><g><g><path class="st95" d="M50,2.5C23.766,2.5,2.5,23.823,2.5,50.126c2.502,63.175,92.507,63.157,95-0.001      C97.5,23.823,76.233,2.5,50,2.5z M50,77.399c-15.036,0-27.27-12.233-27.27-27.27c0.74-18.662,14.654-27.134,27.269-27.134      c0.001,0,0.001,0,0.002,0c12.616,0.001,26.531,8.473,27.267,27.073C77.27,65.167,65.036,77.399,50,77.399z"/><path class="st95" d="M50.002,26.103c-15.946-0.001-23.704,12.486-24.165,24.088C25.838,63.453,36.677,74.292,50,74.292      S74.162,63.453,74.162,50.13C73.705,38.591,65.948,26.105,50.002,26.103z"/></g><path class="st83" d="M41.055,52.528c-0.001,2.575,0.001,7.867,0,10.46c0,0,21.802-13.417,21.802-13.417L41.055,37.272V52.528z"/></g></g></g></svg>
+Youtube music 
+
+</a>
+
+        </div>
+      </div>
+    </span>
+    </body>
+    
+    
+    <script>
+      function navigateToWebsite() {
+          const dropdown = document.getElementById('dropdown');
+          const selectedValue = dropdown.value;
+          if (selectedValue) {
+            window.open(selectedValue, '_blank'); // Open the URL in a new tab
+          }
+        }
+    </script>
+    </html>
+    
+    
+    
+    <title>Interactive Song Lyrics</title>
+    <body>
+        
+   
+      
+    <style>
+        i{
+            font-weight: 900;
+        }
+        option{
+            font-weight: bold;
+        }
+        select{
+            border-radius: 32px;
+
+            font-family:Arial, Helvetica, sans-serif;
+            color: aliceblue;
+            background-color: rgb(229, 222, 211);
+            color: #cd03af;
+            margin-left: 32vh;
+            font-size: 60px;
+            font-weight: 900;
+            text-align: center;
+        }
+      
+        header {
+            background-color: #0fda31;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            
+        }
+        .lyrics-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+         
+        }
+        h4{
+            font-size: 16px;
+        text-align:left;
+        letter-spacing: 2px;
+        background-color: black;
+          
+            text-wrap: pretty;
+            text-size-adjust: 33px;
+            font-display: inline;
+           
+            font-weight: bold;
+            line-height: 1.8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient( 90deg, blue, red,green);
+            background-size: 300% 300%;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: colorShift 3s infinite;
+
+        }
+
+        p{
+            font-size: 16px;
+        text-align:left;
+        letter-spacing: 2px;
+        background-color: black;
+          
+            text-wrap: pretty;
+            text-size-adjust: 33px;
+            font-display: inline;
+           
+            font-weight: bold;
+            line-height: 1.8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient( 90deg, blue, red,plum);
+            background-size: 300% 300%;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: colorShift 3s infinite;
+
+        }
+
+        @keyframes colorShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .lyrics-container p {
+            margin: 1rem 0;
+        }
+
+      
+     
+        button {
+            display: block;
+            margin: 2rem auto;
+            padding: 0.5rem 2rem;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Song Lyrics 🎶</h1>
+    </header>
+
+    
+    <div class="lyrics-container">
+        <h2  style="text-align: center; font-size: 34px; text-decoration: dotted; "  id="song-title">Song Title: Die With a smile </h2>
+        <p id="artist-name"><strong style="text-decoration:line-through;" >Artist:</strong> Bruno mars and Lady Gaga </p>
+        <div id="lyrics">
+            <a target="_blank" href="https://www.instagram.com/brunomars/">
+            <img src="/images/Die with a smile.jpg" width="200" style="margin-left: 100px;" alt="">
+        </a>
+            <p>
+
+                
+
+
+                
+Ooh, ooh
+
+Verse 1: Bruno Mars
+I, I just woke up from a dream
+Where you and I had to say goodbye
+And I don't know what it all means
+But since I survived, I realized
+
+Pre-Chorus: Bruno Mars
+Wherever you go, that's where I'll follow
+Nobody's promised tomorrow
+So I'ma love you every night like it's the last night
+Like it's the last night
+
+Chorus: Bruno Mars
+If the world was ending
+I'd wanna be next to you
+If the party was over
+And our time on Earth was through
+I'd wanna hold you just for a while
+And die with a smile
+If the world was ending
+I'd wanna be next to you
+
+Post-Chorus: Bruno Mars
+Ooh, ooh
+
+Ooh, lost, lost in the words that we scream
+I don't even wanna do this anymore
+'Cause you already know what you mean to me
+And our love's the only war worth fighting for
+
+[Pre-Chorus: Lady Gaga & Bruno Mars]
+Wherever you go, that's where I'll follow
+Nobody's promised tomorrow
+So I'ma love you every night like it's the last night
+Like it's the last night
+
+[Chorus: Lady Gaga & Bruno Mars, Lady Gaga]
+If the world was ending
+I'd wanna be next to you
+If the party was over
+And our time on Earth was through
+I'd wanna hold you just for a while
+And die with a smile
+If the world was ending
+I'd wanna be next to you
+
+[Bridge: Bruno Mars, Lady Gaga & Both]
+Right next to you
+Next to you
+Right next to you
+Oh-oh
+If the world was ending
+I'd wanna be next to you
+If the party was over
+And our time on Earth was through
+I'd wanna hold you just for a while
+And die with a smile
+If the world was ending
+I'd wanna be next to you
+If the world was ending
+I'd wanna be next to you
+
+[Outro: Bruno Mars, Lady Gaga & Bruno Mars]
+(Ooh, ooh)
+I'd wanna be next to you
+
+
+         
+
+</p>
+
+          
+
+<p>
+
+   <h2>
+    Song Title: APT
+   </h2>
+    <p id="artist-name"><strong style="text-decoration:line-through;" >Artist:</strong> Bruno mars and Rose 🌹 </p>
+    <div id="lyrics">
+        <a target="_blank" href="https://www.instagram.com/brunomars/">
+        <img src="/images/apt.jpeg" width="200" style="margin-left: 100px;" alt="">
+    </a>
+        <p><br>
+            
+</p>
+
+</body>
+            <h4>
+                [Intro]
+Chaeyeongiga joahaneun random game
+Random game
+Game start
+
+[Chorus: ROSÉ]
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+Uh, uh-huh, uh-huh
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+Uh, uh-huh, uh-huh
+
+[Verse 1: ROSÉ]
+Kissy face, kissy face
+Sent to your phone, but
+I'm tryna kiss your lips for real (Uh-huh, uh-huh)
+Red hearts, red hearts
+That's what I'm on, yeah
+Come give me somethin' I can feel, oh-oh, oh
+
+[Pre-Chorus: ROSÉ]
+Don't you want me like I want you, baby?
+Don't you need me like I need you now?
+Sleep tomorrow, but tonight, go crazy
+All you gotta do is just meet me at the,
+
+            </h4>
+
+            
+           
+           <style>
+            h2{
+                background-color: #0fda31;
+                display: inline-block;
+                margin-left: 220px;
+                border-radius: 10px;
+                padding:13px;
+
+               
+                justify-content: center;
+
+            }
+            
+            h5{
+                color: black;
+                font-size: 20px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                font-size: 16px;
+        text-align:left;
+        letter-spacing: 2px;
+        background-color: black;
+          
+            text-wrap: pretty;
+            text-size-adjust: 33px;
+            font-display: inline;
+           
+            font-weight: bold;
+            line-height: 1.8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient( 90deg, blue, red,plum);
+            background-size: 300% 300%;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: colorShift 3s infinite;
+
+            }
+           </style>
+          
+           <h5>
+                [Chorus: ROSÉ]
+Apateu, apateu
+Apateu, apateu
+Apatеu, apateu
+Uh, uh-huh, uh-huh
+Apateu, apateu
+Apatеu, apateu
+Apateu, apateu
+Uh, uh-huh, uh-huh
+
+[Verse 2: Bruno Mars, Bruno Mars & ROSÉ]
+It's whatever (Whatever), it's whatever (Whatever)
+It's whatever (Whatever) you like (Woo)
+Turn this apateu into a club (Uh-huh, uh-huh)
+I'm talkin' drink, dance, smoke, freak, party all night (Come on)
+Geonbae, geonbae, girl, what's up? Oh-oh, oh
+
+[Pre-Chorus: Bruno Mars & ROSÉ]
+Don't you want me like I want you, baby?
+Don't you need me like I need you now?
+Sleep tomorrow, but tonight, go crazy
+All you gotta do is just meet me at the
+
+[Chorus: ROSÉ & Bruno Mars]
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+Uh, uh-huh, uh-huh
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+Uh, uh-huh, uh-huh
+            </h5>
+            <h3>
+                
+[Bridge: ROSÉ, ROSÉ & Bruno Mars]
+Hey, so now you know the game
+Are you ready?
+'Cause I'm comin' to get ya, get ya, get ya
+Hold on, hold on
+I'm on my way
+Yeah, yeah, yeah-yeah, yeah
+I'm on my way
+Hold on, hold on
+I'm on my way
+Yeah, yeah, yeah-yeah, yeah
+I'm on my way
+
+[Pre-Chorus: ROSÉ & Bruno Mars]
+Don't you want me like I want you, baby?
+Don't you need me like I need you now?
+Sleep tomorrow, but tonight, go crazy
+All you gotta do is just meet me at the
+
+[Chorus: ROSÉ & Bruno Mars, ROSÉ, Bruno Mars]
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+Just meet me at the (Uh, uh-huh, uh-huh)
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+Just meet me at the (Uh, uh-huh, uh-huh)
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+Just meet me at the (Uh, uh-huh, uh-huh)
+Apateu, apateu
+Apateu, apateu
+Apateu, apateu
+            </h3>
+
+            
+        
+        </div>
+
+
+        
+    </div>
+
+   
+
+
+    </select>
+
+<style>
+
+   
+    h3{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 23px;
+
+        text-align: left;
+        background: linear-gradient( 90deg, from right to left blue, red, yellow);
+            background-size: 300% 300%;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: colorShift 3s infinite;
+    }
+</style>
+   
+</body>
+
+
+<div class="video-container">
+    <video class="video" controls autoplay muted >
+        <source src="/videos/Die with a Smile😃.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video class="video" controls  autoplay muted>
+        <source src="/videos/SnapSave.io-ROSÉ & Bruno Mars - APT. (Official Music Video).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video class="video" controls autoplay muted>
+        <source src="/videos/Houdini 🔮.mp4"   type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<style>
+  .video-container {
+    background-color: black;
+    display: flex;
+    justify-content: space-around; /* Distribute videos horizontally with space between */
+    align-items: center;          /* Align videos vertically */
+    gap: 20px;                    /* Space between videos */
+    flex-wrap: wrap;   
+    border-radius: 33px;
+               /* Allow wrapping to next line if needed */
+  }
+
+  .video {
+    width: 300px; /* Adjust the size as needed */
+    height: auto;
+    border-radius: 23px; /* Maintain aspect ratio */
+  }
+</style>
+
+           
+
+</html>
