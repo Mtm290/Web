@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Company</title>
+    <style>
+       h2{
+        background: linear-gradient(red,black);
+        color:transparent;
+        -webkit-background-clip: text;
+        font-weight: 900;
+        font-size: 45px;
+       }
+       .will-gradient{
+        background: linear-gradient(90deg, red, rgb(18, 215, 34), rgb(16, 76, 188));
+        -webkit-background-clip: text;
+        color: transparent;
+        font-size: 44px;
+        font-weight: 900;
+        background-size: 300% 300%;
+        animation: colorShift 3s infinite;
+       }
+       @keyframes colorShift {
+        0%{
+            background-position: 90% 50%;
+        }
+        50%{
+            background-position: 100% 50%;
+        }
+        100%{
+            background-position: 50% 0%;
+        }
+        
+
+        
+       }
+        p{
+            text-align: center;
+            font-size: 34px;
+            font-weight: bold;
+            color: rgb(255, 77, 0);
+            margin: 10px;
+        }
+        .hello{
+            font-size: 24px;
+            color: rgb(39, 32, 171);
+            text-wrap: pretty;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            letter-spacing: 2px;
+          
+          
+            font-weight: bold;
+        }
+       
+        body {
+            background-image: url('bacground.jpg');
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+          background-color: #d2bdbd;
+
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #444;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1rem;
+            text-decoration: none;
+           
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        .projects img {
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem;
+        }
+        footer {
+          
+
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .mtm-gradient{
+          font-size: 33px;
+          background: linear-gradient(to right, yellow, red, #00b0ff, #636efa);
+          -webkit-background-clip: text;
+          color: transparent;
+          background-size: 300% 300%;
+          animation: colorShift 4s infinite;
+
+        }
+        @keyframes colorShift{
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100%{
+            background-position: 50% 0%;
+          }
+        }
+        .t-gradient{
+          font-size: 33px;
+          background: linear-gradient(to right, #ffcc00, #ff9900);
+          -webkit-background-clip: text;
+          color: transparent;
+        }
+       
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span style="  font-size: 3em; font-family:Verdana, Geneva, Tahoma, sans-serif" class="mtm-gradient">
+          Future 
+        </span>
+        is build from 
+        <span class="t-gradient">
+          here 
+        </span> 
+          
+          
+         
+        </h1>
+        <a  target="_blank" href="https://www.harperconstruction.com/">
+        <img src="/images/Build.png" width="100px" alt="">
+      </a>
+        <p>Building your dreams, one brick at a time.</p>
+    </header>
+    <nav>
+        <a href="#about">About Us</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="about">
+        <h2>About Us</h2>
+        <p class="hello">We specialize in residential, commercial, and industrial construction.</p>
+    </section>
+    <section id="projects" class="projects">
+        <h2 class="will-gradient">Our Projects</h2>
+        <img src="/images/worker.jpg" alt="Project 1">
+        <img src="images/Skyscapper.jpg" alt="Project 2">
+        <a  target="_blank" href="https://www.wtc.com/media">
+        
+            <img src="/images/sky.jpg" alt="Project 3">
+    
+        </a>
+    
+   <h2>
+    Contact Us
+   </h2>
+    <footer>
+        <p>MTM Construction &copy; 2025</p>
+    </footer>
+    <script>
+      const express = require('express');
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
+
+const app = express();
+const PORT = 3000;
+
+app.use(bodyParser.json());
+app.use(express.static('public'));
+
+app.post('/contact', (req, res) => {
+    const { name, email, message } = req.body;
+
+    // Example: Sending email (configure SMTP properly)
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'your-email@gmail.com',
+            pass: 'your-email-password',
+        },
+    });
+
+    const mailOptions = {
+        from: email,
+        to: 'your-company-email@gmail.com',
+        subject: `Message from ${name}`,
+        text: message,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return res.status(500).send('Error sending message');
+        }
+        res.send('Message sent successfully');
+    });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+    </script>
+</body>
+</html>
