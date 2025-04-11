@@ -1,463 +1,506 @@
-<a href="https://www.torproject.org/" target="_blank" rel="noopener noreferrer">
-
-<button class="shiny-cta">
-    <span>Hack mode is ON </span>
-  </button>
-</a>
-
-  <style>
-
-
-
-
-
-
-    /*
-  CSS @property and the New Style
-  https://ryanmulligan.dev/blog/css-property-new-style/
-  */
-  @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap");
-  
-  :root {
-    --shiny-cta-bg: #000000;
-    --shiny-cta-bg-subtle: #1a1818;
-    --shiny-cta-fg: #ffffff;
-    --shiny-cta-highlight: blue;
-    --shiny-cta-highlight-subtle: #8484ff;
-  }
-  
-  @property --gradient-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-  
-  @property --gradient-angle-offset {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-  
-  @property --gradient-percent {
-    syntax: "<percentage>";
-    initial-value: 5%;
-    inherits: false;
-  }
-  
-  @property --gradient-shine {
-    syntax: "<color>";
-    initial-value: white;
-    inherits: false;
-  }
-  
-  .shiny-cta {
-    --animation: gradient-angle linear infinite;
-    --duration: 2s;
-    --shadow-size: 22px;
-    isolation: isolate;
-    position: relative;
-    overflow:hidden;
-    cursor: pointer;
-    outline-offset: 4px;
-    padding: 1.25rem 2.5rem;
-    font-family:monospace;
-    font-size: 1.125rem;
-    font-weight: 900;
-    line-height: 1.2;
-    border: 5px solid transparent;
-    border-radius: 360px;
-    color: var(--shiny-cta-fg);
-    background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
-        padding-box,
-      conic-gradient(
-          from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
-          transparent,
-          var(--shiny-cta-highlight) var(--gradient-percent),
-          var(--gradient-shine) calc(var(--gradient-percent) * 2),
-          var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
-          transparent calc(var(--gradient-percent) * 4)
-        )
-        border-box;
-    box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
-  
-    &::before,
-    &::after,
-    span::before {
-      content: "";
-      pointer-events: none;
-      position: absolute;
-      inset-inline-start: 50%;
-      inset-block-start: 50%;
-      translate: -50% -50%;
-      z-index: -1;
-    }
-  
-    &:active {
-      translate: 0 4px;
-    }
-  }
-  
-  /* Dots pattern */
-  .shiny-cta::before {
-    --size: calc(100% - var(--shadow-size) * 3);
-    --position: 2px;
-    --space: calc(var(--position) * 2);
-    width: var(--size);
-    height: var(--size);
-    background: radial-gradient(
-        circle at var(--position) var(--position),
-        white calc(var(--position) / 4),
-        transparent 0
-      )
-      padding-box;
-    background-size: var(--space) var(--space);
-    background-repeat: space;
-    mask-image: conic-gradient(
-      from calc(var(--gradient-angle) + 45deg),
-      black,
-      transparent 10% 90%,
-      black
-    );
-    border-radius: inherit;
-    opacity: 0.4;
-    z-index: -1;
-  }
-  
-  /* Inner shimmer */
-  .shiny-cta::after {
-    --animation: shimmer linear infinite;
-    width: 100%;
-    aspect-ratio: 1;
-    background: linear-gradient(
-      -50deg,
-      transparent,
-      var(--shiny-cta-highlight),
-      transparent
-    );
-    mask-image: radial-gradient(circle at bottom, transparent 40%, black);
-    opacity: 0.6;
-  }
-  
-  .shiny-cta span {
-    z-index: 1;
-  
-    &::before {
-      --size: calc(100% + 1rem);
-      width: var(--size);
-      height: var(--size);
-      box-shadow: inset 0 -1ex 2rem 4px var(--shiny-cta-highlight);
-      opacity: 0;
-    }
-  }
-  
-  /* Animate */
-  .shiny-cta {
-    --transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
-    transition: var(--transition);
-    transition-property: --gradient-angle-offset, --gradient-percent,
-      --gradient-shine;
-  
-    &,
-    &::before,
-    &::after {
-      animation: var(--animation) var(--duration),
-        var(--animation) calc(var(--duration) / 0.4) reverse paused;
-      animation-composition: add;
-    }
-  
-    span::before {
-      transition: opacity var(--transition);
-      animation: calc(var(--duration) * 1.5) breathe linear infinite;
-    }
-  }
-  
-  .shiny-cta:is(:hover, :focus-visible) {
-    --gradient-percent: 20%;
-    --gradient-angle-offset: 95deg;
-    --gradient-shine: var(--shiny-cta-highlight-subtle);
-  
-    &,
-    &::before,
-    &::after {
-      animation-play-state: running;
-    }
-  
-    span::before {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes gradient-angle {
-    to {
-      --gradient-angle: 360deg;
-    }
-  }
-  
-  @keyframes shimmer {
-    to {
-      rotate: 360deg;
-    }
-  }
-  
-  @keyframes breathe {
-    from,
-    to {
-      scale: 1;
-    }
-    50% {
-      scale: 1.2;
-    }
-  }
-  
-  html,
-  body {
-    height: 100%;
-  }
-  
-  body {
-    display: grid;
-    place-items: center;
-    color: white;
-    background: #0c0302;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  </style>
-
-
-<form id="loginForm">
-    <div class="input-group">
-        <label for="username" Email="" id="username-label">Username</label>
-        <input type="text" id="username" name="username" required>
-    </div>
-    <div class="input-group">
-        <label for="password"   id="password-label">Password</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-
-    <button type="submit" id="login-button">Login</button>
-    <a href="https://delinea.com/resources/password-generator-it-tool" class="forgot-password" id="forgot-password-link">Forgot Password?</a>
-</form>
-<p id="message"></p>
-
-<!-- Language Selector -->
- <div>
-<select id="language-select" onchange="OpenInNewTab(this.value)">
-    <option   value="en" selected>English</option>
-    <option value="es">Español</option>
-    <option value="fr">Français</option>
-    <option value="de">Deutsch</option>
-</select>
-</div>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <script>
-
-            function OpenInNewTab(url){
-                if(url){
-                    window.open(url, '_blank');
-
-                }
-
-            }
-
-const translations = {
-    en: {
-        username: "Username",
-        password: "Password",
-        login: "Login",
-        forgotPassword: "Forgot Password?",
-        message: "Please fill in both fields."
-    },
-    es: {
-        username: "Nombre de usuario",
-        password: "Contraseña",
-        login: "Iniciar sesión",
-        forgotPassword: "¿Olvidaste tu contraseña?",
-        message: "Por favor, complete ambos campos."
-    },
-    fr: {
-        username: "Nom d'utilisateur",
-        password: "Mot de passe",
-        login: "Connexion",
-        forgotPassword: "Mot de passe oublié?",
-        message: "Veuillez remplir les deux champs."
-    },
-    de: {
-        username: "Benutzername",
-        password: "Passwort",
-        login: "Anmelden",
-        forgotPassword: "Passwort vergessen?",
-        message: "Bitte füllen Sie beide Felder aus."
-    }
-};
-
-document.getElementById('language-select').addEventListener('change', function(event) {
-    const selectedLanguage = event.target.value;
-
-    // Update text content based on the selected language
-    document.getElementById('username-label').textContent = translations[selectedLanguage].username;
-    document.getElementById('password-label').textContent = translations[selectedLanguage].password;
-    document.getElementById('login-button').textContent = translations[selectedLanguage].login;
-    document.querySelector('.forgot-password').textContent = translations[selectedLanguage].forgotPassword;
-
-    // Optional: Update the message content dynamically
-    document.getElementById('message').textContent = "";
-});
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default behavior
-
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const selectedLanguage = document.getElementById('language-select').value;
-
-    if (username  ==="mtharshana65@gmail.com" && password ==="1234") {
-        window.open("https://mail.google.com", "_blank");
-    } else {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').textContent = translations[selectedLanguage].message;
-    }
-});
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/images/Zillow.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <title>Zillow</title>
+  
+  <header>
+  <a href="http://www.zillow.com/" target="_blank" rel="noopener noreferrer"> <img src="/images/zillow (3).png"  class="logo" alt="">
+  </a>
 
 
-
-        </script>
-    </body>
-
-    <style>
-
-      input[type="password"] {
-        width: 250px;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: none;
-        font-weight: 900;
-        letter-spacing:3px;
-      }
-
-
-input[type="text"] {
-  width: 250px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-weight: bold;
-  padding: 10px;
-  margin-bottom: 20px;
-  border:none;
-}
-      @keyframes colorShift{
-        0%{
-            background-position: 0% 50%;
-        }
-        100%{
-            background-position: 100% 50%;
-        }
-      }
-        select{
-            cursor: pointer;
-            width: 222%;
-            min-width: 33px;
-            background: linear-gradient(90deg, red,blue,black);
-          background-size: 300% 300%;
-         
-          -webkit-background-clip: text;
-          animation:colorShift 3s infinite;
-         
-            padding: 10px 20px;
-            border: none;
-           
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-        }
-           
-        a{
-            text-decoration: none;
-            font-size: 31px;
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-        }
-        button{
-            font-size: 32px;
-            background-color: blue;
-            color: white;
-            font-family: 'Times New Roman', Times, serif;
-            
-            font-weight: bold;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:active{
-            background-color: darkblue;
-            color: white;
-        
-        }
-
-        div{
-            margin-top: 20px;
-            text-align: center;
-            font-size: 20px;
-           
-           
-            font-family:Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            background: linear-gradient(90deg, red, blue,orange);
-            background-size: 300% 300%;
-            color: transparent;
-            -webkit-background-clip: text;
-            animation: colorShift 4s infinite;
-            
-          
-
-        }
-
-        @keyframes colorShift{
-            0%{
-                background-position: 0% 50%;
-
-            }
-            50%{
-                background-position: 50% 100%;
-            }
-            100%{
-                background-position: 0%    505 ;
-            }
-        }
-
-        #language-select {
-    margin-top: 15px;
-    padding: 5px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: block;
-    width: 100%;
-    text-align: center;
- 
+  </header>
    
+  
+  <style>
+   
+    .logo{
+
+    width: 90px;
+    height:800;
+    display: flex;
+    justify-content: center;
+    color: blue;
+   cursor: pointer;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 40px;
+    }
+footer{
+  background-color: black;
+  color: white;
+  font-size: 21px;
+  text-align: center;
+  padding: 32px 34px ;
+
+}
+    .property-card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+     
+    }
+
+    .property-card img:hover {
+      transform: scale(1.1);
+     
+    }
+
+    .property-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: ease-in-out 0.2s;
+    }
+
+    .property-details {
+      padding: 15px;
+    }
+    .icons{
+      display: flex;
+      
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .fa-linkedin:hover{
+      color: rgb(34, 34, 130);
+      cursor: pointer;
+    }
+    .icons i{
+      font-size: 20px;
+    }
+    .fa-twitter:hover{
+      color: rgb(12, 127, 235);
+      cursor: pointer;
+    }
     
+
+    .property-details h3 {
+      margin: 0;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .address {
+      font-size: 16px;
+      color: #555;
+      margin: 8px 0;
+    }
+
+    .specs {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .fa-facebook:hover{
+      color: blue;
+      cursor: pointer;
+    }
+    .app-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-    </style>
+.store-badge {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.store-badge:hover {
+  transform: scale(1.05);
+}
+
+    .fa-youtube:hover{
+      color: red;
+      cursor: pointer;
+    }
+    .fa-pinterest:hover{
+      color: orange;
+      cursor: pointer;
+    }
+    .fa-instagram:hover{
+      color:pink;
+      cursor: pointer;
+    }
+    .text:hover{
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .specs span {
+      margin-right: 10px;
+    }
+    .grid{
+      display: flex;
+      justify-content:baseline;
+      gap: 12px;
+    }
+    h6{
+      font-size: 43px;
+      text-align: center;
+      color: blue;
+      font-weight: bold;
+      font-family: sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    a{
+      text-decoration: none;
+    }
+    button{
+      padding: 12px 21px;
+      color: rgb(237, 237, 244);
+      background-color: rgb(0, 0, 0);
+      font-size: 21px;
+      font-weight: bold;
+      border-radius: 21px;
+      border: none;
+      cursor: pointer;
+      
+
+      
+    }
+    button:hover{
+      background: linear-gradient(90deg, red,blue);
+      transform: translateY(-0.3px);
+    }
+  </style>
+</head>
+<body>
+  
+  <br><b><br><br><br>
+
+<div class="property-grid">
+  <!-- Property 1 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="House">
+    <div class="property-details">
+      <div class="price">$450,000</div>
+      <div class="address">123 Palm Street, Los Angeles, CA</div>
+      <div class="specs">
+        <span>3 Beds</span>
+        <span>2 Baths</span>
+        <span>1,800 sqft</span>
+       <a target="_blank" href="https://www.zillow.com/homedetails/5019-Donna-Ave-Tarzana-CA-91356/19946932_zpid/"> <button>Shop Now</button>
+       </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 2 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="House">
+    <div class="property-details">
+      <div class="price">$320,000</div>
+      <div class="address">789 Oak Avenue, Dallas, TX</div>
+      <div class="specs">
+        <span>2 Beds</span>
+        <span>2 Baths</span>
+        <span>1,200 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 3 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="House">
+    <div class="property-details">
+      <div class="price">$980,000</div>
+      <div class="address">456 Ocean Drive, Miami, FL</div>
+      <div class="specs">
+        <span>4 Beds</span>
+        <span>3 Baths</span>
+        <span>3,200 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 4 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" alt="House">
+    <div class="property-details">
+      <div class="price">$600,000</div>
+      <div class="address">88 Mountain View, Denver, CO</div>
+      <div class="specs">
+        <span>3 Beds</span>
+        <span>2 Baths</span>
+        <span>2,100 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 5 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="House">
+    <div class="property-details">
+      <div class="price">$750,000</div>
+      <div class="address">55 Maple Street, Seattle, WA</div>
+      <div class="specs">
+        <span>4 Beds</span>
+        <span>3 Baths</span>
+        <span>2,500 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 6 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="House">
+    <div class="property-details">
+      <div class="price">$520,000</div>
+      <div class="address">12 Lakeview Road, Chicago, IL</div>
+      <div class="specs">
+        <span>3 Beds</span>
+        <span>2 Baths</span>
+        <span>1,950 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 7 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3" alt="House">
+    <div class="property-details">
+      <div class="price">$600,433</div>
+      <div class="address">Los Alamos in USA </div>
+      <div class="specs">
+        <span>4 Beds</span>
+        <span>3 Baths</span>
+        <span>3,500 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 8 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="House">
+    <div class="property-details">
+      <div class="price">$875,000</div>
+      <div class="address">3412 Sunset Lane, Austin, TX</div>
+      <div class="specs">
+        <span>4 Beds</span>
+        <span>3 Baths</span>
+        <span>3,100 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 9 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227" alt="House">
+    <div class="property-details">
+      <div class="price">$540,000</div>
+      <div class="address">99 Pine Tree Ave, Orlando, FL</div>
+      <div class="specs">
+        <span>3 Beds</span>
+        <span>2 Baths</span>
+        <span>2,200 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property 10 -->
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="House">
+    <div class="property-details">
+      <div class="price">$1,250,000</div>
+      <div class="address">77 Bay Area Blvd, San Francisco, CA</div>
+      <div class="specs">
+        <span>5 Beds</span>
+        <span>4 Baths</span>
+        <span>4,500 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="House">
+    <div class="property-details">
+      <div class="price">$1,250,000</div>
+      <div class="address">77 Bay Area Blvd, San Francisco, CA</div>
+      <div class="specs">
+        <span>5 Beds</span>
+        <span>4 Baths</span>
+        <span>4,500 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="property-card">
+    <img src="https://images.unsplash.com/photo-1628012209120-d9db7abf7eab?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="House">
+    <div class="property-details">
+      <div class="price">$1,250,000</div>
+      <div class="address">77 Bay Area Blvd, San Francisco, CA</div>
+      <div class="specs">
+        <span>5 Beds</span>
+        <span>4 Baths</span>
+        <span>4,500 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="property-card">
+  
+  
+    <img src="https://images.unsplash.com/photo-1582063289852-62e3ba2747f8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="House">
+    <div class="property-details">
+      <div class="price">$1,250,000</div>
+      <div class="address">77 Bay Area Blvd, San Francisco, CA</div>
+      <div class="specs">
+        <span>5 Beds</span>
+        <span>4 Baths</span>
+        <span>4,500 sqft</span>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="property-card">
+    <img src="/images/pexels-pixabay-259588.jpg" alt="">
+    <div class="property-details">
+      <div class="price"> $5,450,000</div>
+        <div class="address"> 12345 San Francisco, CA</div>
+          <div class="specs">
+            <span>7 Beds</span>
+            <span>3 Baths</span>
+            <span>3,500 sqrt</span>
+            <button>Shop Now </button>
+          </div>
+        
+     
+    </div>
+  </div>
+  <div class="property-card">
+<img src="https://wallpapercave.com/uwp/uwp4672085.jpeg" alt="">
+<div class="property-details">
+  <div class="price">$1,250,000</div> 
+  <div class="address"> 12345 San Francisco, CA</div>
+  <div class="specs"></div>
+  <div class="specs">
+    <span>5 Beds</span>
+    <span>4 Baths</span>
+    <span>4,500 sqft</span>
+    <button>Shop Now</button>
+   
+
+
+</div>
+
+  </div>
+</div>
+
+<div class="property-card">
+  <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+  <div class="property-details">
+    <div class="price">$1,250,000</div> 
+    <div class="address"> 12345 San Francisco, CA</div>
+    <div class="specs"></div>
+    <div class="specs">
+      <span>5 Beds</span>
+      <span>4 Baths</span>
+      <span>4,500 sqft</span>
+      <button>Shop Now</button>
+     
+  
+  
+  </div>
+  
+    </div>
+  </div>
+</div>
+
+
+
+
+<br><br>
+<footer>
+
+  <div class="grid">
+    <p class="text">
+      About
+    </p>
+    <p class="text">
+      Zestimates
+    </p>
+    <p class="text">
+      Careers
+    </p>
+    <p class="text">
+      
+    </p>
+    <p class="text">
+      Careers-U.S. Privacy Notice 
+    </p>
+    <p class="text">
+      Careers-Mexico Privacy Notice
+    </p>
+    <p class="text">
+    Help
+    </p>
+    <p class="text">
+  Advertise
+    </p>
+  </div>
+
+
+ 
+
+
+  <div class="icons">
+
+    <i class="fa-brands fa-facebook"></i>
+    <i class="fa-brands fa-twitter"></i>
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-linkedin"></i>
+    <i class="fa-brands fa-youtube"></i>
+    <i class="fa-brands fa-pinterest"></i>
+    </div><br><br><br>
+
+    <div class="app-buttons">
+      <a href="https://play.google.com/store/apps/details?id=your.app.id" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" class="store-badge">
+      </a>
+      <a href="https://apps.apple.com/app/idyourappid" target="_blank">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="store-badge">
+      </a>
+    </div>
+    
+
+    &copy; 2025 Zillow, Inc. All rights reserved.
+</footer>
+</body>
 </html>
