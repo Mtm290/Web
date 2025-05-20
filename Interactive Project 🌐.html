@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://127.0.0.1:3004/do%20it.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Interactive Project 🌐_files/___vscode_livepreview_injected_script"></script>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            Interactive Project 🌐
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://127.0.0.1:3004/do%20it.html">
+        <!-- Font Awesome CDN -->
+<link href="./Interactive Project 🌐_files/all.min.css" rel="stylesheet">
+
+    <style>
+        h2{
+            text-align: center;
+            margin-top: 2em;
+
+        }
+        :root{
+            --primary:rgb(57, 61, 57);
+            --text-dark:rgb(15, 16, 16);
+            --bg-light: rgb(195, 198, 38);
+        }
+        .card img{
+            width: 100%;
+            border-radius: 23px;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 1.6em;
+            background-color: var(--bg-light);
+  color: var(--text-dark);
+  
+        }
+        header{
+            background: var(--primary);
+            color: azure;
+            padding: 1em;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           flex-wrap: wrap;
+
+        }
+        .text{
+            font-size: 1.8em;
+
+
+        }
+        .nav-toggle{
+            display: none;
+            font-size: 1.7em;
+
+            background: none;
+border: none;
+color: rgb(0, 135, 253);     
+       
+        }
+        .nav-links{
+            display: flex;
+            list-style: none;
+            gap: 1em;
+
+
+            
+        }
+        .btn{
+
+            display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+        }
+        .nav-links a {
+  color: #fff;
+  text-decoration: none;
+}
+#home{
+  padding: 3rem 1rem;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1745972036912-3e7ccc236922?q=80&w=1922&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center/cover;
+  color: #fff;
+}
+.destinations {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.cards{
+    display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 2rem;
+
+
+
+}
+.card{
+    background: #fff;
+  border-radius: 8px;
+  width: 300px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.about,.contact{
+    padding:3em 2em;
+    text-align: center;
+
+}
+.special{
+    padding: 3em 4em;
+    text-align: center;
+    
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 400px;
+    margin: auto;
+    
+}
+input,textarea{
+    padding: 0.8em;
+    border: 3px solid red;
+    border-radius: 8px;
+
+}
+button[type="submit"] {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 5px;
+}
+footer{
+    background: black;
+    color: #fff;
+    text-align: center;
+    padding: 2.4rem;
+    margin-top: 3rem;
+
+}
+p{
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 1.1em;
+    margin-bottom: 1.2em;
+  }
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  
+
+
+.nav-links{
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.2em;
+
+}
+.nav-links.show{
+    display: flex;
+}
+}
+
+
+.icons{
+
+    display: flex;
+    justify-content: end;
+    gap: 1.2em;
+
+}
+.fa-instagram{
+    cursor: pointer;
+}
+.fa-facebook{
+    cursor: pointer;
+}
+.fa-whatsapp{
+    cursor: pointer;
+}
+.fa-discord{
+    cursor: pointer;
+}
+.fa-reddit{
+    cursor: pointer;
+}
+
+.links{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+.links .fa-instagram{
+    color: red;
+}
+.links .fa-facebook{
+    color: blue;
+}
+.links .fa-whatsapp{
+    color: green;
+}
+.links .fa-discord{
+    color: orange;
+}
+.links .fa-reddit{
+    color: purple;
+}
+.links a{
+    color: var(--text-dark);
+    font-size: 1.2em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.links a:hover{
+    color: var(--primary);
+}
+.links a:active{
+    color: var(--primary);
+}
+
+
+</style><script>
+    const toggle = document.querySelector('.nav-toggle');
+const navLinks = document.getElementById('navLinks');
+
+toggle.addEventListener('click', () => {
+  const expanded = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-expanded', !expanded);
+  navLinks.classList.toggle('show');
+});
+
+</script></head>
+
+    
+
+
+    <body>
+        <header>
+            <nav aria-label="Main Navigation">
+                <h1 class="text">
+                    pizzas World 🌎____🍕
+                     
+                </h1>
+                <button class="nav-toggle" aria-label="Toggle Menu" aria-expanded="false">
+                  
+                    ☰ 
+            
+            <ul class="nav-links" id="navLink">
+            <li><a href="http://127.0.0.1:3004/do%20it.html#home">Home</a></li>
+            <li><a href="http://127.0.0.1:3004/do%20it.html#about%20us">About US </a></li>
+            <li><a href="http://127.0.0.1:3004/do%20it.html#special">Special</a></li>
+            <li><a href="http://127.0.0.1:3004/do%20it.html#contact%20us">Contact Us </a></li>
+        </ul>
+           
+                </button></nav>
+        </header>
+
+        <section class="#home">
+            <h2>
+                we provide the best pizza in the world
+            </h2>
+            <p>
+                Enjoy our wonderful pizzas.
+            </p>
+            <a href="http://127.0.0.1:3004/do%20it.html#about%20us" class="btn">Explore more</a>
+        </section>
+        <section id="destinations" class="destinations">
+            <h2>Popular Foods</h2>
+            <div class="cards">
+              <article class="card">
+                <img src="./Interactive Project 🌐_files/photo-1513104890138-7c749659a591" alt="Mountains">
+                <h3>pizzas</h3>
+                <p>Enjoy the pizza at your favourite restaurant.</p>
+              </article>
+              <article class="card">
+                <img src="./Interactive Project 🌐_files/photo-1568901346375-23c9450c58cd" alt="Beach">
+                <h3>Burgers</h3>
+                <p>Relax on Burgers are here! </p>
+              </article>
+              <article class="card">
+                <img src="./Interactive Project 🌐_files/thumb__700_0_0_0_auto.jpg" alt="City View">
+                <h3>Chicken Biriyani</h3>
+                <p>Experience the best chicken biriyani in the world.</p>
+              </article>
+            </div>
+          </section>
+          <section id="about us" class="about">
+            <h2>About Us</h2>
+            <p>We help travelers explore the world with ease and joy.</p>
+          </section>
+          <section class="special" id="special">
+            <h4>
+                special
+            </h4>
+            <p>
+                We're providing the best pizza in the world. Our team of experts is dedicated to creating the perfect pizza for every taste. We use the freshest ingredients and the best cooking techniques to ensure that every pizza is delicious and unique. We also offer a wide range of pizza toppings, so you can customize your pizza to your liking. Whether you're a pizza lover or just looking for a quick and easy meal, we have something for everyone.
+            </p>
+          </section>
+        
+          <section id="contact us" class="contact">
+            <h2>Contact Us</h2>
+            <form aria-label="Contact Form">
+              <label for="name">Name</label>
+              <input type="text" id="name" required="">
+              <label for="email">Email</label>
+              <input type="email" id="email" required="">
+              <label for="message">Message</label>
+              <textarea id="message" required=""></textarea>
+              <button type="submit">Send</button>
+            </form>
+          </section>
+        <footer>
+            <p>Copyright © 2023 Pizza World</p>
+      
+            <div class="icons">
+                <ul class="links">
+                    <li><a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="https://www.whatsapp.com/" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                    <li><a href="https://www.discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a></li>
+                    <li><a href="https://www.reddit.com/" target="_blank"><i class="fa-brands fa-reddit"></i></a></li>
+                </ul>
+            </div>
+            <style>
+                .links{
+                    list-style: none;
+                }
+            </style>
+        
+      
+      
+        </footer>
+     
+        
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="http://127.0.0.1:3004/do%20it.html" async="" defer=""></script>
+    
+</body></html>
