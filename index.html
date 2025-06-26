@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Studios </title>
+
+  <link rel="stylesheet" href="">
+  
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1f1e1e;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: #ffcc00;
+    }
+
+    .studio-grid {
+        margin-left: 150px;
+        margin-right: 150px;
+      
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .studio-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+   .studio-card img:hover{
+   
+    transform: scale(1.04);
+    transition: ease-in 2s infinite;
+   }
+
+    .studio-card img {
+    width: 100%;
+    object-fit: contain;
+    padding: 1em;
+    height: 160px;
+    background: #f7e9e9;
+    }
+
+    .studio-name {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    p{
+        text-align:center;
+        font-size: 18px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: bolder;
+
+    }
+    p:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    @media (max-width: 1200px) {
+      .studio-card {
+        width: 100%;
+      }
+    }
+    a{
+      text-decoration: none;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Movie Studios</h1>
+
+  <div class="studio-grid">
+    <div class="studio-card">
+     
+     
+      
+      <a target="_blank" href="about wb.html"><img src="https://1000logos.net/wp-content/uploads/2020/09/Warner-Bros-Logo.png" alt="Warner Bros">
+      </a>
+      <div class="studio-name">Warner Bros</div>
+     <a target="_blank" href="wb.html">  <p>
+        Find movies
+      </p>
+     </a>
+    </div>
+    <div class="studio-card">
+      <img src="https://1000logos.net/wp-content/uploads/2021/05/Illumination-logo.png" alt="Warner Bros">
+      <div class="studio-name">ILLUMINATION</div>
+     <a target="_blank" href="minions.htm">  <p>
+        Find movies
+      </p>
+     </a>
+    </div>
+    <div class="studio-card">
+      <img src="https://1000logos.net/wp-content/uploads/2023/01/Paramount-Animation-logo.png" alt="Paramount">
+      <div class="studio-name">Paramount</div>
+      <p>
+        Find movies
+      </p>
+    </div>
+    <div class="studio-card">
+      <img src="https://1000logos.net/wp-content/uploads/2020/09/Universal-Logo.png" alt="Universal">
+      <div class="studio-name">Universal</div>
+      <p>
+        Find movies
+      </p>
+    </div>
+    <div class="studio-card">
+      <img src="https://www.logo.wine/a/logo/20th_Century_Fox/20th_Century_Fox-Logo.wine.svg" alt="20th Century Studios">
+      <div class="studio-name">20th Century</div>
+      <p>
+        Find movies
+      </p>
+    
+    </div>
+    <div class="studio-card">
+      <img src="https://www.logo.wine/a/logo/Columbia_Pictures/Columbia_Pictures-Logo.wine.svg" alt="Columbia">
+      <div class="studio-name">Columbia</div>
+      <p>
+        Find movies
+      </p>
+    </div>
+    <div class="studio-card">
+      <img src="https://1000logos.net/wp-content/uploads/2023/01/Marvel-Studios-logo.png" alt="Marvel Studios">
+      <div class="studio-name">Marvel</div>
+      <a target="_blank" href="mcu.html"> <p>
+
+        Find movies
+      </p>
+      </a>
+    </div>
+    <div class="studio-card">
+        <img src="https://1000logos.net/wp-content/uploads/2023/10/A24-Logo.png" alt="Marvel Studios">
+        <div class="studio-name">A24</div>
+       <a target="_blank" href="A24.html">  <p>
+          Find movies
+        </p>
+       </a>
+      </div>
+      
+      <div class="studio-card">
+        <img src="https://1000logos.net/wp-content/uploads/2017/06/Star-Wars-Logo-1.png" alt="Marvel Studios">
+        <div class="studio-name">
+          STAR WARS 
+        </div>
+        <p>
+          Find movies
+        </p>
+      </div>
+      
+      <div class="studio-card">
+        <img src="https://www.logo.wine/a/logo/Netflix/Netflix-Logo.wine.svg" alt="Marvel Studios">
+        <div class="studio-name">Netflix</div>
+        <p>
+          Find movies
+        </p>
+      </div>
+        
+      <div class="studio-card">
+        <img src="https://logos-world.net/wp-content/uploads/2025/01/Legendary-Entertainment-Logo.png" alt="Marvel Studios">
+        <div class="studio-name">LEGENDARY</div>
+        <p>
+          Find movies
+        </p>
+      </div>
+      <div class="studio-card">
+        <img src="https://1000logos.net/wp-content/uploads/2021/12/New-Line-Cinema-Logo.png" alt="">
+        <div class="studio-name">NEW LINE CINEMA</div>
+        <p>
+            Find movies
+        </p>
+      </div>
+      <div class="studio-card">
+        <img src="https://logos-world.net/wp-content/uploads/2023/06/Lionsgate-Films-Logo.png" alt="">
+    <div class="studio-name">Lionsgate </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+      
+    <div class="studio-card">
+        <img src="https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg" alt="">
+    <div class="studio-name">DISNEY </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+    <div class="studio-card">
+        <img src="https://logos-world.net/wp-content/uploads/2020/12/Pixar-Logo.png" alt="">
+    <div class="studio-name">PIXAR </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+      
+    <div class="studio-card">
+        <img src="https://www.logo.wine/a/logo/Prime_Video/Prime_Video-Logo.wine.svg" alt="">
+    <div class="studio-name">PRIME </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+        
+    <div class="studio-card">
+        <img src="https://www.logo.wine/a/logo/Hulu/Hulu-Logo.wine.svg" alt="">
+    <div class="studio-name">hulu </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+    <div class="studio-card">
+        <img src="https://logos-world.net/wp-content/uploads/2021/04/Metro-Goldwyn-Mayer-MGM-Logo.jpg" alt="">
+    <div class="studio-name">MGM </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+      
+    <div class="studio-card">
+        <img src="https://variety.com/wp-content/uploads/2021/06/HBO-MAX-logo.jpg?w=1000&h=667&crop=1&resize=1000%2C667" alt="">
+    <div class="studio-name">HBO max </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+    <div class="studio-card">
+        <img src="https://logos-world.net/wp-content/uploads/2024/08/Spider-Man-Logo.png" alt="">
+    <div class="studio-name">SPIDERMAN </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+      
+    <div class="studio-card">
+        <img src="https://1000logos.net/wp-content/uploads/2017/02/Harry-potter-Logo.png" alt="">
+    <div class="studio-name">Hp </div> 
+   <a target="_blank" href="hp.html"> <p>
+        Find movies
+    </p>
+   </a>
+    
+    </div>
+    <div class="studio-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Fast-furious-logo-fast-furious.png" alt="">
+    <div class="studio-name">FAST AND FURIOUS </div> 
+     <a target="_blank" href="ff.html"><p>
+        Find movies
+    </p>
+     </a>
+    </div>
+    <div class="studio-card">
+        <img src="https://logos-world.net/wp-content/uploads/2020/08/DC-Comics-Logo.png" alt="">
+    <div class="studio-name">DC </div> 
+    <p>
+        Find movies
+    </p>
+    
+    </div>
+    <div class="studio-card">
+      <img src="https://cdn.prod.website-files.com/64ea57571d50b02423c4505d/64fb22cff74540d8ec281125_lord%20of%20the%20rings%20logo.png" alt="">
+  <div class="studio-name">LORD OF THE RINGS </div> 
+  <p>
+      Find movies
+  </p>
+  
+  </div>
+  <div class="studio-card">
+    <img src="https://1000logos.net/wp-content/uploads/2024/02/Studio-Ghibli-Logo.png" alt="">
+<div class="studio-name">GHIBLI Studio </div> 
+ <a  target="_blank" href="gb.html"><p>
+    Find movies
+</p>
+ </a>
+
+</div>
+  </div>
+
+</body>
+</html>

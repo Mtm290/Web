@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WB </title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #000000;
+      color: #fff;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #0f0f0e;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      background-color: green;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      padding: 23px 30px;
+    }
+
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 9em;
+      
+    }
+
+    .poster {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      border-radius: 6px;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .poster:hover {
+      transform: scale(1.03);
+      z-index: 2;
+    }
+
+    .poster img {
+      gap: 3em;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border: 2px solid rgb(250, 248, 248);
+      border-radius: 6px;
+      display: block;
+   
+    }
+
+    /* Optional: for spacing on very small screens */
+    @media (max-width: 600px) {
+      .poster-grid {
+        gap: 3em;
+      }
+    }
+    .text{
+      background-color: #0f0f0e;
+      position: relative;
+      padding: 0em 2em;
+      font-weight: bolder;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Warner Bros Movies</h1>
+
+  <div class="poster-grid">
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/2/7/7/0/6/4/277064-barbie-0-1000-0-1500-crop.jpg?v=1b83dc7a71" alt="Barbie">
+     
+    
+  
+   
+     
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/78/y5/zg/ej/oefdD26aey8GPdx7Rm45PNncJdU-0-1000-0-1500-crop.jpg?v=2d0ce4be25" alt="The Dark Knight">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/9/3/6/0/6/5/936065-the-conjuring-last-rites-0-1000-0-1500-crop.jpg?v=2cdfe0c6fa" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/1/6/5/5/0/16550-the-dark-knight-rises-0-1000-0-1500-crop.jpg?v=a7db2d4314" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/3/4/8/9/1/4/348914-the-batman-0-1000-0-1500-crop.jpg?v=ec12a8b7ce" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/4/0/6/7/7/5/406775-joker-0-1000-0-1500-crop.jpg?v=e4ea7f98cc" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/2/2/5/0/6/0/225060-aquaman-0-1000-0-1500-crop.jpg?v=a5a1c0b649" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/t0/3y/yr/rs/n3rm3gxguxzFDlygpROV7RHbELe-0-1000-0-1500-crop.jpg?v=67909d635e" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/w3/47/76/am/6uDpMsdn8bbZScDptbika5JEtSH-0-1000-0-1500-crop.jpg?v=ee603d8e3b" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-1000-0-1500-crop.jpg?v=49eed12751" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-1000-0-1500-crop.jpg?v=cc533700f8" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/sv/95/s9/4j/inception-0-1000-0-1500-crop.jpg?v=30d7224316" alt="Man of Steel">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/wx/hm/hf/14/uKnhbfNt1ZR2TdoZpdn7vSNZlhX-0-1000-0-1500-crop.jpg?v=3bdae194cc" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/6/0/0/1116600-sinners-2025-0-1000-0-1500-crop.jpg?v=00ce32e0ba" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/4c/kn/9m/6a/221dfc20f8690b357b6b9ad66c13b5be-0-1000-0-1500-crop.jpg?v=9a0ce1ad93" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/1/3/7/4/7/6/137476-american-sniper-0-1000-0-1500-crop.jpg?v=bd4ebfac7c" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/4/0/5/5/4/5/405545-it-chapter-two-0-1000-0-1500-crop.jpg?v=727cc83650" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/4/8/2/9/6/48296-i-am-legend-0-1000-0-1500-crop.jpg?v=5ad5d3b4e2" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/az/2g/rn/wz/7HdNvpAMnU9rjKDJSFzAjnsz0eh-0-1000-0-1500-crop.jpg?v=d12c4cb9e6" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/8/2/3/6/4/8/823648-beetlejuice-beetlejuice-0-1000-0-1500-crop.jpg?v=2759be608e" alt="">
+    </div>
+
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/4/0/1/0/0/40100-the-hangover-0-1000-0-1500-crop.jpg?v=6464871bf5" alt="">
+    </div>
+
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/kc/w1/ts/4n/f1-0-1000-0-1500-crop.jpg?v=8c7537f9d9" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/8/0/0/8/5/8/800858-joker-folie-a-deux-0-1000-0-1500-crop.jpg?v=a4bf0389e2" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/14/sk/45/1c/hFUsdnUoQDQ02EVlKTyhDTdehEr-0-1000-0-1500-crop.jpg?v=b607a95894" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/8/7/9/5/3/87953-the-hangover-part-iii-0-1000-0-1500-crop.jpg?v=f0e2a6655e" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/1/1/7/6/2/1/117621-interstellar-0-1000-0-1500-crop.jpg?v=7ad89e6666" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/5/1/5/1/8/51518-the-matrix-0-1000-0-1500-crop.jpg?v=fc7c366afe" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/5/1/5/1/6/51516-the-matrix-revolutions-0-1000-0-1500-crop.jpg?v=919dceb0be" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/5/1/5/1/7/51517-the-matrix-reloaded-0-1000-0-1500-crop.jpg?v=a8bd09d740" alt="">
+    </div>
+
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/hx/bm/p0/ov/matrix-0-1000-0-1500-crop.jpg?v=e71d44078c" alt="">
+    </div>
+  <div class="poster">
+    <img src="https://a.ltrbxd.com/resized/sm/upload/md/nb/pu/3i/bOXBV303Fgkzn2K4FeKDc0O31q4-0-1000-0-1500-crop.jpg?v=7307b1ff5b" alt="">
+  </div>
+    
+  <div class="poster">
+    <img src="https://a.ltrbxd.com/resized/film-poster/5/1/1/1/1/51111-300-0-1000-0-1500-crop.jpg?v=84df44bf2e" alt="">
+  </div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/et/lu/jq/mu/the-blind-side-0-1000-0-1500-crop.jpg?v=075ead1c26" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/1/4/6/0/51460-twister-0-1000-0-1500-crop.jpg?v=fb3e6b239c" alt="">
+</div>
+    
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/7/0/4/8/47048-the-exorcist-0-1000-0-1500-crop.jpg?v=897c9aa211" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/1/0/7/6/7/0/107670-justice-league-0-1000-0-1500-crop.jpg?v=fd3f95cbb0" alt="">
+</div>
+    
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/7/0/6/0/8/3/706083-wonka-0-1000-0-1500-crop.jpg?v=d4bd6afd7f" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/6/1/1/0/8/261108-a-star-is-born-0-1000-0-1500-crop.jpg?v=29d345083a" alt="">
+</div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/4/6/1/4/4/46144-sherlock-holmes-0-1000-0-1500-crop.jpg?v=92f4a1b4a1" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/9/8/3/3/6/98336-godzilla-0-1000-0-1500-crop.jpg?v=c1344855a7" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/5/1/9/3/2/51932-charlie-and-the-chocolate-factory-0-1000-0-1500-crop.jpg?v=cf68e10228" alt="">
+    </div>
+    
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/4/6/7/7/9/46779-happy-feet-0-1000-0-1500-crop.jpg?v=d31ea7dd17" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/film-poster/4/8/8/2/3/48823-the-fugitive-0-1000-0-1500-crop.jpg?v=f0226b0e25" alt="">
+    </div>
+    <div class="poster">
+      <img src="https://a.ltrbxd.com/resized/sm/upload/cq/zv/tn/d6/5ZfdSZeP4ZDJwA3Q17SpxV6wBjF-0-1000-0-1500-crop.jpg?v=f958fb5718" alt="">
+    </div>
+    
+
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/0/4/9/9/50499-the-perfect-storm-0-1000-0-1500-crop.jpg?v=1a6fb3695e" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/3/8/7/2/3/8/387238-crazy-rich-asians-0-1000-0-1500-crop.jpg?v=21695f4b1f" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/3/6/9/1/7/9/369179-black-adam-0-1000-0-1500-crop.jpg?v=5e1791e3fa" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/2/0/0/8/0/220080-kong-skull-island-0-1000-0-1500-crop.jpg?v=71e0e3ba82" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/hj/1a/dc/am/bDqqiu3yi7V5idgdei61XBairBZ-0-1000-0-1500-crop.jpg?v=0f29592251" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/0/0/7/5/40075-clash-of-the-titans-0-1000-0-1500-crop.jpg?v=ce8c42bf2c" alt="">
+</div>
+
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/1/0/6/2/6/2/106262-the-conjuring-0-1000-0-1500-crop.jpg?v=8cbb976912" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/0/6/8/1/50681-superman-0-1000-0-1500-crop.jpg?v=874476852b" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/s4/d9/77/ed/edMlij7nw2NMla32xskDnzMCFBM-0-1000-0-1500-crop.jpg?v=e7b13d27e0" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/1/3/1/9/0/213190-shazam--0-1000-0-1500-crop.jpg?v=5aea3f5ac2" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/3/7/9/6/2/6/379626-pokemon-detective-pikachu-0-1000-0-1500-crop.jpg?v=5ab0bc33bf" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/8/5/285-the-great-gatsby-0-1000-0-1500-crop.jpg?v=83157e478f" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/9/5/7/0/5/0/957050-superman-2025-0-1000-0-1500-crop.jpg?v=54e41a55ff" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/7/0/6/8/47068-final-destination-0-1000-0-1500-crop.jpg?v=cde2a9e624" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/dm/oa/gw/qk/qQ6IvrEDe5OutlYs1xRQby9gcZE-0-1000-0-1500-crop.jpg?v=2b994df6a2" alt="">
+</div>
+
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/7/3/0/6/47306-final-destination-3-0-1000-0-1500-crop.jpg?v=c424e0bd0d" alt="">
+</div>
+
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/eh/sw/9a/g8/8joRaZ3wfcqIePImFJpgypQ71Jp-0-1000-0-1500-crop.jpg?v=4a3ad26442" alt="">
+</div>
+
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/0e/kp/hn/3l/nDzbtN56RXRJL4mpFZ3mdAW6so2-0-1000-0-1500-crop.jpg?v=356b9f312f" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/0/2/6/2/2/502622-final-destination-bloodlines-0-1000-0-1500-crop.jpg?v=3c04d3a110" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/jr/th/pu/pb/laefkgrfa3oKwvBtWTBtf2suiI4-0-1000-0-1500-crop.jpg?v=f5d8231026" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/1/2/0/9/51209-lethal-weapon-4-0-1000-0-1500-crop.jpg?v=10e0d49f4e" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/a2/zu/xd/e2/pr5RcT2TdJ09PkETdhRiwixf8PW-0-1000-0-1500-crop.jpg?v=17ef0ae612" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/1/2/1/1/51211-lethal-weapon-2-0-1000-0-1500-crop.jpg?v=0b9703f4e2" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/zv/vc/5m/ax/mF2bTqJuxbZPeEJRIMrA2WeQVxu-0-1000-0-1500-crop.jpg?v=9b73046ce8" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/6/1/8/6/6/261866-ready-player-one-0-1000-0-1500-crop.jpg?v=e84ba98da4" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/3/7/9/6/2/6/379626-pokemon-detective-pikachu-0-1000-0-1500-crop.jpg?v=5ab0bc33bf" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/gy/z2/o8/vq/pyrv46Lr3rOIcSg1PkkCwktCC3G-0-1000-0-1500-crop.jpg?v=a294641de8" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/6/2/7/8/0/62780-mad-max-fury-road-0-1000-0-1500-crop.jpg?v=37c5424b1f" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/1/7/7/9/4/1/177941-san-andreas-0-1000-0-1500-crop.jpg?v=384807506a" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/35/mj/25/xd/yn1dLaEcvUHIgxmAu6NY5ho6CnJ-0-1000-0-1500-crop.jpg?v=6f5430d5c9" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/mj/ol/db/70/5fuWykynmiJ07fKA84BVxxuiGHx-0-1000-0-1500-crop.jpg?v=0ae5d25fb9" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/3/0/1/0/4/0/301040-sully-0-1000-0-1500-crop.jpg?v=d60925feaa" alt="">
+</div>
+ 
+
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/2/9/7/4/5/229745-central-intelligence-0-1000-0-1500-crop.jpg?v=548178126d" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/fm/y0/94/4q/gpBK7S3ZooMAP8MhA1N5JvOHwUl-0-1000-0-1500-crop.jpg?v=458a39d5a9" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/1/6/1/3/51613-the-green-mile-0-1000-0-1500-crop.jpg?v=fff3d0bd1f" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/vx/tj/jr/as/PHf0KsjBWMmxjf_1_m-0-1000-0-1500-crop.jpg?v=84217647a3" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/5/1/9/3/7/251937-the-lego-batman-movie-0-1000-0-1500-crop.jpg?v=ff7c1cbca1" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/0/4/9/9/50499-the-perfect-storm-0-1000-0-1500-crop.jpg?v=1a6fb3695e" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/il/wm/1v/to/9ip2LgCyVMdovhJqY4mttTWfyo6-0-1000-0-1500-crop.jpg?v=64938979ef" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/3/9/2/6/0/239260-creed-0-1000-0-1500-crop.jpg?v=3fa9f6f051a" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/1/1/4/3/9/411439-creed-ii-0-1000-0-1500-crop.jpg?v=24aeabbb89" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/6/0/1/6/2/4/601624-creed-iii-0-1000-0-1500-crop.jpg?v=0855f08594" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/5/1/5/0/7/51507-the-last-samurai-0-1000-0-1500-crop.jpg?v=06ced446cd" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/4/0/7/0/44070-watchmen-0-1000-0-1500-crop.jpg?v=dccd60903f" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/1/2/7/5/1/12751-300-rise-of-an-empire-0-1000-0-1500-crop.jpg?v=836ee4ea88" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/lq/bj/c1/5e/qrZ49dcenKqtRWSbOK8zWLQC6GG-0-1000-0-1500-crop.jpg?v=79d913d018" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/6/4/3/9/3/64393-magic-mike-0-1000-0-1500-crop.jpg?v=6cffe5ef07" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/vu/cv/s6/zw/7GUzvvrb6hbOWl8l8YkaS4fgTDT-0-1000-0-1500-crop.jpg?v=14b2746933" alt="">
+</div>
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/7/2/3/6/47236-maverick-0-1000-0-1500-crop.jpg?v=1c3a6203e1" alt="">
+</div>
+
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/2/0/5/1/1/4/205114-the-lego-movie-2-the-second-part-0-1000-0-1500-crop.jpg?v=11598317bd" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/3/2/3/0/2/432302-the-super-mario-bros-movie-0-1000-0-1500-crop.jpg?v=d7dd92386e" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/3/6/1/0/1/4/361014-rampage-0-1000-0-1500-crop.jpg?v=088ca7ca78" alt="">
+</div>
+
+<div class="poster">
+  <img src="https://a.ltrbxd.com/resized/film-poster/4/2/6/1/3/1/426131-birds-of-prey-and-the-fantabulous-emancipation-of-one-har-0-1000-0-1500-crop.jpg?v=e326912be2" alt="">
+</div>
+<!-- Add more posters here -->
+  </div>
+
+</body>
+</html>
